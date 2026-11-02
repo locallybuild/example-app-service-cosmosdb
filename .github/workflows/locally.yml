@@ -38,13 +38,15 @@ jobs:
             Microsoft.Web
 
       - name: Apply environments/locally
+        id: apply0
         working-directory: environments/locally
         run: |
           terraform init -input=false
           locally run terraform apply -auto-approve -input=false
 
       - name: Destroy environments/locally
-        if: always()
+        # Only once there's something to destroy.
+        if: always() && steps.apply0.outcome != 'skipped'
         working-directory: environments/locally
         run: locally run terraform destroy -auto-approve -input=false
 

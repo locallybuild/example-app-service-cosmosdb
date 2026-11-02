@@ -35,6 +35,8 @@ jobs:
           plugins: custom
           plugins-list: |
             Microsoft.DocumentDB
+            Microsoft.Insights
+            Microsoft.OperationalInsights
             Microsoft.Web
 
       - name: Apply environments/locally
